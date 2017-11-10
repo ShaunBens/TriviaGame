@@ -1,0 +1,186 @@
+<!--Trivia Game Pseudo Code!-->
+
+<!--  - Create UI-->
+<!--    - Page will be styled to resemble Back to The Future!-->
+<!--    - Single page layout, with start button, designed with bootstrap and beautified with CSS.-->
+<!--    - Singular Panel that will hold all of our game on a static background.-->
+
+
+<!--  - Write HTML-->
+<!--    - Placeholder row at top and bottom of page.-->
+<!--    - Middle row will contain our section that holds our game elements.-->
+<!--      - The questions displayed on the page will be static. (not javascript)-->
+<!--      - The answeres on the page will be displayed with javascript or jQuery-->
+<!--      - The player tally portion will have static portions with dynamic results.-->
+
+<!--  - How does the game work?-->
+<!--    - With jQuery, the page will display a timer at the top(below the game logo)-->
+<!--      - This timer will auto start and reveal the questions.-->
+<!--        - To reveal the questions. We must place an open div around our game elemnts -->
+<!--          that has the opacity set to zero, until START is pressed.-->
+<!--      - The timer will decrease until it reaches zero, at that time an Alert will pop up saying you win/lose.-->
+<!--        - After acknowledging the alert, the page transitions to the score totals page.-->
+<!--          - The totals page will include the following: *Wins *Losses *Correct Answers/out of the total number of questions-->
+
+<!--  - Firgure out questions for the game -->
+<!--      - 1.) Who is the main character of Back to The Future? - Marty Mcfly-->
+<!--      - 2.) What is the first name of Marty McFly's father? - George-->
+<!--      - 3.) In what years is the first movie set? - 1985/1955-->
+<!--      - 4.) Who is Marty's arch nemisis in the movie? - Biff Tannen-->
+<!--      - 5.) What substance filled Biff's car in the chase scene through town? - Manure -->
+<!--      - 6.) What was the name of Marty's girlfriend? - Jennifer-->
+<!--      - 7.) What was Marty's name when he went back in time? - Calvin Klein-->
+<!--      - 8.) What was the "Time Machine" built upon? - a DeLorean-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <title>BTTF Trivia!</title>
+
+</head>
+
+<body>
+  <!--Open row to create seperation between game elemnt and background.-->
+  <div class="row">
+    <div class="col-xs-12"></div>
+    <br><br><br><br><br><br>
+  </div>
+
+  <div class="container">
+    <div class="panel panel-default" style="height: 1275px">
+      <section class="center">
+        <img id="logo" class="center-block" src="assets/images/bttfLogo1.png" />
+      </section>
+      <div class="col-xs-12">
+        <div class="panel-body">
+          <button type="button" class="btn btn-default center-block"><span id="start"><a style="font-weight= bold;">START!</a></span></button>
+          <div style="text-align: center; font-weight: bold;"><span id="timer"></span></div>
+          <div id="instructions">
+            <h3 style="text-align: center">You have 60 seconds to answer 8 questions pertaining to the movie,<br> "Back to the Future"</h3>
+            <h2 style="text-align: center"> Click start to begin the game!</h2>
+          </div>
+
+          <div id="quiz" class="container-fluid">
+            <div class="questions">
+              <p>1. Who is the main character of Back to the Future?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q1" value=1> Steven McFly<br>
+                <span>2.) </span><input class="option" type="radio" name="q1" value=2> George McFly<br>
+                <span>3.) </span><input class="option" type="radio" name="q1" value=3> Marty McFly<br>
+                <span>4.) </span><input class="option" type="radio" name="q1" value=4> Biff McFly</br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>2. What is the first name of Marty's father?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q2" value=1> John<br>
+                <span>2.) </span><input class="option" type="radio" name="q2" value=2> Carl<br>
+                <span>3.) </span><input class="option" type="radio" name="q2" value=3> Ben<br>
+                <span>4.) </span><input class="option" type="radio" name="q2" value=4> George<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>3. In what years is the first movie set?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q3" value=1> 1985/1955<br>
+                <span>2.) </span><input class="option" type="radio" name="q3" value=2> 1985/2015<br>
+                <span>3.) </span><input class="option" type="radio" name="q3" value=3> 1986/1886<br>
+                <span>4.) </span><input class="option" type="radio" name="q3" value=4> 1983/2017<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>4. Who is Marty's arch nemisis in the movie?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q4" value=1> Robert Zemeckis<br>
+                <span>2.) </span><input class="option" type="radio" name="q4" value=2> Bob Gale<br>
+                <span>3.) </span><input class="option" type="radio" name="q4" value=3> Steven Speilberg<br>
+                <span>4.) </span><input class="option" type="radio" name="q4" value=4> Biff Tannen<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>5. What substance filled Biff's car in the case scene through town?</p>
+              <form>
+                <span>1.) </span><input class="option" type="radio" name="q5" value=1> Grass seed<br>
+                <span>2.) </span><input class="option" type="radio" name="q5" value=2> Manure<br>
+                <span>3.) </span><input class="option" type="radio" name="q5" value=3> Garbage<br>
+                <span>4.) </span><input class="option" type="radio" name="q5" value=4> Water<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>6. What was the name of Marty's girlfriend?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q6" value=1> Natalie<br>
+                <span>2.) </span><input class="option" type="radio" name="q6" value=2> Stacy<br>
+                <span>3.) </span><input class="option" type="radio" name="q6" value=3> Jennifer<br>
+                <span>4.) </span><input class="option" type="radio" name="q6" value=4> Bella<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>7. What was Marty's name when he went back in time?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q7" value=1> Calvin Klein<br>
+                <span>2.) </span><input class="option" type="radio" name="q7" value=2> Clint Eastwood<br>
+                <span>3.) </span><input class="option" type="radio" name="q7" value=3> Andrew Garfield<br>
+                <span>4.) </span><input class="option" type="radio" name="q7" value=4> Christopher Lloyd<br>
+              </form>
+            </div><br>
+            <div class="questions">
+              <p>8. What was the Time Machine built upon?</p>
+              <form id="qAnswers">
+                <span>1.) </span><input class="option" type="radio" name="q8" value=1> TransAm<br>
+                <span>2.) </span><input class="option" type="radio" name="q8" value=2> Camaro<br>
+                <span>3.) </span><input class="option" type="radio" name="q8" value=3> Ferrari<br>
+                <span>4.) </span><input class="option" type="radio" name="q8" value=4> DeLorean<br>
+              </form>
+            </div>
+            <br>
+            <button id="submit" type="button" class="btn btn-defualt">Submit Quiz</div>
+          </div>
+
+
+
+          <div id="results">
+            <p>Correct: <span id="correctAnswers"></span></p>
+            <p>Incorrect: <span id="incorrectAnswers"></span></p>
+            <p>Unanswered: <span id="noAnswer"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+
+</html>
